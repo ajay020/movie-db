@@ -2,11 +2,14 @@ import { useParams } from "react-router-dom";
 import { useMovieDetails } from "../hooks/useMovieDetails";
 import { getImageUrl } from "../utils/image";
 import Badge from "../components/Badge";
+import { useMovieCredits } from "../hooks/useMovieCredits";
+import CastList from "../components/movie/CastList";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
 
   const { data: movie, isLoading, error } = useMovieDetails(id);
+  const { data: credits } = useMovieCredits(id);
 
   if (isLoading) {
     return (
@@ -110,6 +113,9 @@ const MovieDetailsPage = () => {
             )}
           </div>
         </div>
+
+        {/* cast  */}
+        {credits && <CastList cast={credits.cast} />}
 
         {/* Production Companies */}
         <section className="mt-16">
