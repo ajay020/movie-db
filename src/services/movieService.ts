@@ -1,7 +1,7 @@
 import { api } from "../api/axios";
-import type { MovieResponse } from "../types/movie";
+import type { Movie, MovieResponse } from "../types/movie";
 
-export const getTrendingMovies = async (): Promise<MovieResponse> => {
+export const getTrendingMovies = async (): Promise<Movie[]> => {
   const response = await api.get<MovieResponse>("/trending/movie/week");
-  return response.data;
+  return response.data.results;
 };
