@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useMovieDetails } from "../hooks/useMovieDetails";
 import { getImageUrl } from "../utils/image";
+import Badge from "../components/Badge";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -66,12 +67,7 @@ const MovieDetailsPage = () => {
             {/* Genres */}
             <div className="mt-6 flex flex-wrap gap-2">
               {movie.genres.map((genre) => (
-                <span
-                  key={genre.id}
-                  className="rounded-full bg-red-600 px-4 py-1 text-sm"
-                >
-                  {genre.name}
-                </span>
+                <Badge name={genre.name} key={genre.id} />
               ))}
             </div>
 
