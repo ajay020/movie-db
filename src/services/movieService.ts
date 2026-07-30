@@ -22,3 +22,13 @@ export const getMovieCredits = async (
 
   return response.data;
 };
+
+export const getSimilarMovies = async (
+  movieId: number,
+): Promise<Movie[]> => {
+  const response = await api.get<MovieResponse>(
+    `/movie/${movieId}/similar`,
+  );
+
+  return response.data.results;
+};

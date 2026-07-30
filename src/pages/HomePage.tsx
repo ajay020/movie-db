@@ -1,4 +1,4 @@
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../components/movie/MovieCard";
 import { useTrendingMovies } from "../hooks/useTrendingMovies";
 
 const HomePage = () => {

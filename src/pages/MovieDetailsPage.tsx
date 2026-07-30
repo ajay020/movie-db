@@ -4,12 +4,17 @@ import { getImageUrl } from "../utils/image";
 import Badge from "../components/Badge";
 import { useMovieCredits } from "../hooks/useMovieCredits";
 import CastList from "../components/movie/CastList";
+import { useSimilarMovies } from "../hooks/useSimilarMovies";
+import SimilarMovies from "../components/movie/SimilarMovies";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
 
   const { data: movie, isLoading, error } = useMovieDetails(id);
   const { data: credits } = useMovieCredits(id);
+  const { data: similarMovies } = useSimilarMovies(id);
+
+  console.log(similarMovies);
 
   if (isLoading) {
     return (
@@ -133,6 +138,9 @@ const MovieDetailsPage = () => {
             ))}
           </div>
         </section>
+
+        {/* Similar movies     */}
+        {similarMovies && <SimilarMovies movies={similarMovies} />}
       </div>
     </div>
   );
