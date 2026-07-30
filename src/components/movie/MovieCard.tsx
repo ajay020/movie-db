@@ -7,7 +7,7 @@ type MovieCardProps = {
 };
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-  console.log(movie);
+  // console.log(movie);
 
   return (
     <Link to={`/movies/${movie.id}`}>

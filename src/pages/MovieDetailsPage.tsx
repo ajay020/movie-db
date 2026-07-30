@@ -6,6 +6,8 @@ import { useMovieCredits } from "../hooks/useMovieCredits";
 import CastList from "../components/movie/CastList";
 import { useSimilarMovies } from "../hooks/useSimilarMovies";
 import SimilarMovies from "../components/movie/SimilarMovies";
+import { useMovieVideos } from "../hooks/useMovieVideos";
+import MovieTrailer from "../components/movie/MovieTrailer";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -13,8 +15,7 @@ const MovieDetailsPage = () => {
   const { data: movie, isLoading, error } = useMovieDetails(id);
   const { data: credits } = useMovieCredits(id);
   const { data: similarMovies } = useSimilarMovies(id);
-
-  console.log(similarMovies);
+  const { data: videos } = useMovieVideos(id);
 
   if (isLoading) {
     return (
@@ -118,6 +119,10 @@ const MovieDetailsPage = () => {
             )}
           </div>
         </div>
+
+        {/* Trailer  */}
+
+        {videos && <MovieTrailer videos={videos} />}
 
         {/* cast  */}
         {credits && <CastList cast={credits.cast} />}

@@ -2,6 +2,7 @@ import { api } from "../api/axios";
 import type { Movie, MovieResponse } from "../types/movie";
 import type { MovieCredits } from "../types/movie-credits";
 import type { MovieDetails } from "../types/movie-details";
+import type { MovieVideo, MovieVideosResponse } from "../types/movie-video";
 
 export const getTrendingMovies = async (): Promise<Movie[]> => {
   const response = await api.get<MovieResponse>("/trending/movie/week");
@@ -23,11 +24,17 @@ export const getMovieCredits = async (
   return response.data;
 };
 
-export const getSimilarMovies = async (
+export const getSimilarMovies = async (movieId: number): Promise<Movie[]> => {
+  const response = await api.get<MovieResponse>(`/movie/${movieId}/similar`);
+
+  return response.data.results;
+};
+
+export const getMovieVideos = async (
   movieId: number,
-): Promise<Movie[]> => {
-  const response = await api.get<MovieResponse>(
-    `/movie/${movieId}/similar`,
+): Promise<MovieVideo[]> => {
+  const response = await api.get<MovieVideosResponse>(
+    `/movie/${movieId}/videos`,
   );
 
   return response.data.results;
