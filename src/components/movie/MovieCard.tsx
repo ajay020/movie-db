@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import FavoriteButton from "./FavouriteButton";
 import type { Movie } from "../../types/movie";
 import { getImageUrl } from "../../utils/image";
 
@@ -7,17 +8,23 @@ type MovieCardProps = {
 };
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-  // console.log(movie);
-
   return (
-    <Link to={`/movies/${movie.id}`}>
-      <div className="overflow-hidden rounded-lg bg-white shadow-md transition hover:shadow-xl">
-        <img
-          src={getImageUrl(movie.poster_path)}
-          alt={movie.title}
-          className="h-80 w-full object-cover"
-        />
+    <div className="overflow-hidden rounded-lg bg-white shadow-md transition hover:shadow-xl">
+      <div className="relative">
+        <Link to={`/movies/${movie.id}`}>
+          <img
+            src={getImageUrl(movie.poster_path)}
+            alt={movie.title}
+            className="h-80 w-full object-cover"
+          />
+        </Link>
 
+        <div className="absolute right-3 top-3">
+          <FavoriteButton movie={movie} />
+        </div>
+      </div>
+
+      <Link to={`/movies/${movie.id}`}>
         <div className="p-4">
           <h2 className="line-clamp-1 text-lg font-semibold text-black">
             {movie.title}
@@ -29,8 +36,8 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             <span>{movie.release_date.slice(0, 4)}</span>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ import SimilarMovies from "../components/movie/SimilarMovies";
 import { useMovieVideos } from "../hooks/useMovieVideos";
 import MovieTrailer from "../components/movie/MovieTrailer";
 import MovieStats from "../components/MovieStats";
+import FavoriteButton from "../components/movie/FavouriteButton";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -72,6 +73,11 @@ const MovieDetailsPage = () => {
               <span>{movie.runtime} min</span>
 
               <span>{movie.release_date}</span>
+            </div>
+
+            {/* Favorite Button */}
+            <div className="mt-6">
+              <FavoriteButton movie={movie} />
             </div>
 
             {/* Genres */}

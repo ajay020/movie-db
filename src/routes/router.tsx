@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import MovieDetailsPage from "../pages/MovieDetailsPage";
 import SearchPage from "../pages/SearchPage";
 import MainLayout from "../layouts/MainLayout";
+import FavoritePage from "../pages/FavouritePage";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage />,
+      },
+      {
+        path: "/favorites",
+        element: <FavoritePage />,
       },
       {
         path: "/movies/:id",
