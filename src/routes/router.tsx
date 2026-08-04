@@ -2,18 +2,24 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import MovieDetailsPage from "../pages/MovieDetailsPage";
 import SearchPage from "../pages/SearchPage";
+import MainLayout from "../layouts/MainLayout";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/movies/:id",
-    element: <MovieDetailsPage />,
-  },
-  {
-    path: "/search",
-    element: <SearchPage />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/search",
+        element: <SearchPage />,
+      },
+      {
+        path: "/movies/:id",
+        element: <MovieDetailsPage />,
+      },
+    ],
   },
 ]);

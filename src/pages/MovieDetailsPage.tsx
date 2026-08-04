@@ -35,7 +35,7 @@ const MovieDetailsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div>
       {/* Backdrop */}
       <div className="relative h-[350px]">
         <img
