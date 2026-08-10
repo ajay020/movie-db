@@ -60,13 +60,13 @@ export const getGenres = async (): Promise<Genre[]> => {
 
 export const getMoviesByGenre = async (
   genreId: number | null,
+  page: number = 1,
 ): Promise<MovieResponse> => {
   const response = await api.get<MovieResponse>("/discover/movie", {
-    params: genreId
-      ? {
-          with_genres: genreId,
-        }
-      : {},
+    params: {
+      ...(genreId && { with_genres: genreId }),
+      page,
+    },
   });
 
   return response.data;
