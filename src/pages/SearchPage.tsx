@@ -2,8 +2,6 @@ import { useSearchParams } from "react-router-dom";
 import SearchBar from "../components/search/SearchBar";
 import { useDebounce } from "../hooks/useDebounce";
 import { useSearchMovies } from "../hooks/useSearchMovies";
-import MovieCard from "../components/movie/MovieCard";
-import { Search } from "lucide-react";
 import SearchResults from "../components/search/SearchResults";
 
 const SearchPage = () => {

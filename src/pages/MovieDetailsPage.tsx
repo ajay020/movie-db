@@ -10,6 +10,7 @@ import { useMovieVideos } from "../hooks/useMovieVideos";
 import MovieTrailer from "../components/movie/MovieTrailer";
 import MovieStats from "../components/MovieStats";
 import FavoriteButton from "../components/movie/FavouriteButton";
+import { Star } from "lucide-react";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -45,7 +46,7 @@ const MovieDetailsPage = () => {
           className="h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/40 to-transparent" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 pb-10">
@@ -66,7 +67,10 @@ const MovieDetailsPage = () => {
             )}
 
             <div className="mt-5 flex flex-wrap gap-5 text-lg">
-              <span>⭐ {movie.vote_average.toFixed(1)}</span>
+              <span className="flex items-center gap-1">
+                <Star color="yellow" size={20} className="fill-current" />
+                {movie.vote_average.toFixed(1)}
+              </span>
 
               <span>{movie.vote_count.toLocaleString()} votes</span>
 

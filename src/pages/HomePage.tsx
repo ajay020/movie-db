@@ -4,9 +4,21 @@ import { useTrendingMovies } from "../hooks/useTrendingMovies";
 const HomePage = () => {
   const { data: movies, isLoading, error } = useTrendingMovies();
 
-  if (isLoading) return <h2>Loading...</h2>;
+  if (isLoading) {
+    return (
+      <div className="mx-auto max-w-7xl p-8">
+        <h2 className="text-xl">Loading...</h2>
+      </div>
+    );
+  }
 
-  if (error) return <h2>Something went wrong.</h2>;
+  if (error) {
+    return (
+      <div className="mx-auto max-w-7xl p-8">
+        <h2>Something went wrong.</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-7xl p-6">
