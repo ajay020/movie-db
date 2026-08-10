@@ -1,4 +1,6 @@
 import { api } from "../api/axios";
+import type { Genre } from "../types/genre";
+import type { GenreResponse } from "../types/genre";
 import type { Movie, MovieResponse } from "../types/movie";
 import type { MovieCredits } from "../types/movie-credits";
 import type { MovieDetails } from "../types/movie-details";
@@ -48,4 +50,24 @@ export const searchMovies = async (query: string): Promise<Movie[]> => {
   });
 
   return response.data.results;
+};
+
+export const getGenres = async (): Promise<Genre[]> => {
+  const response = await api.get<GenreResponse>("/genre/movie/list");
+
+  return response.data.genres;
+};
+
+export const getMoviesByGenre = async (
+  genreId: number | null,
+): Promise<MovieResponse> => {
+  const response = await api.get<MovieResponse>("/discover/movie", {
+    params: genreId
+      ? {
+          with_genres: genreId,
+        }
+      : {},
+  });
+
+  return response.data;
 };

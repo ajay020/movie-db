@@ -4,6 +4,7 @@ import MovieDetailsPage from "../pages/MovieDetailsPage";
 import SearchPage from "../pages/SearchPage";
 import MainLayout from "../layouts/MainLayout";
 import FavoritePage from "../pages/FavouritePage";
+import GenrePage from "../pages/GenrePage";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/movies/:id",
         element: <MovieDetailsPage />,
+      },
+      {
+        path: "/genres",
+        element: <GenrePage />,
       },
     ],
   },
