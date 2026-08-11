@@ -2,6 +2,7 @@ import { Search } from "lucide-react";
 import type { Movie } from "../../types/movie";
 import MovieCard from "../movie/MovieCard";
 import SearchSkeleton from "./SearchSkeleton";
+import MovieCardSkeleton from "../movie/MovieCardSkeleton";
 
 type SearchResultsProps = {
   query: string;

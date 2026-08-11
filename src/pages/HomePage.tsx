@@ -1,5 +1,8 @@
+import HeroMovie from "../components/movie/HeroMovie";
 import MovieSection from "../components/movie/MovieSection";
 import { useMovies } from "../hooks/useMovies";
+import HeroMovieSkeleton from "../components/movie/HeroMovieSkeleton";
+import MovieSectionSkeleton from "../components/movie/MovieSectionSkeleton";
 
 const HomePage = () => {
   const {
@@ -20,13 +23,21 @@ const HomePage = () => {
     error: topRatedError,
   } = useMovies("top-rated");
 
+  const featuredMovie = popularData?.results[0];
+
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
+      {popularLoading ? (
+        <HeroMovieSkeleton />
+      ) : (
+        featuredMovie && <HeroMovie movie={featuredMovie} />
+      )}
+
       <section>
         {popularError && <p>Unable to load popular movies.</p>}
 
         {popularLoading ? (
-          <p>Loading popular movies...</p>
+          <MovieSectionSkeleton />
         ) : (
           <MovieSection
             title="🔥 Popular Movies"
@@ -39,7 +50,7 @@ const HomePage = () => {
         {nowPlayingError && <p>Unable to load now playing movies.</p>}
 
         {nowPlayingLoading ? (
-          <p>Loading now playing movies...</p>
+          <MovieSectionSkeleton />
         ) : (
           <MovieSection
             title="🎬 Now Playing"
@@ -52,7 +63,7 @@ const HomePage = () => {
         {topRatedError && <p>Unable to load top rated movies.</p>}
 
         {topRatedLoading ? (
-          <p>Loading top rated movies...</p>
+          <MovieSectionSkeleton />
         ) : (
           <MovieSection
             title="⭐ Top Rated"
