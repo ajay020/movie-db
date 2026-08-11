@@ -1,35 +1,66 @@
-import MovieCard from "../components/movie/MovieCard";
-import { useTrendingMovies } from "../hooks/useTrendingMovies";
+import MovieSection from "../components/movie/MovieSection";
+import { useMovies } from "../hooks/useMovies";
 
 const HomePage = () => {
-  const { data: movies, isLoading, error } = useTrendingMovies();
+  const {
+    data: popularData,
+    isLoading: popularLoading,
+    error: popularError,
+  } = useMovies("popular");
 
-  if (isLoading) {
-    return (
-      <div className="mx-auto max-w-7xl p-8">
-        <h2 className="text-xl">Loading...</h2>
-      </div>
-    );
-  }
+  const {
+    data: nowPlayingData,
+    isLoading: nowPlayingLoading,
+    error: nowPlayingError,
+  } = useMovies("now-playing");
 
-  if (error) {
-    return (
-      <div className="mx-auto max-w-7xl p-8">
-        <h2>Something went wrong.</h2>
-      </div>
-    );
-  }
+  const {
+    data: topRatedData,
+    isLoading: topRatedLoading,
+    error: topRatedError,
+  } = useMovies("top-rated");
 
   return (
-    <div className="mx-auto max-w-7xl p-6">
-      <h1 className="mb-6 text-3xl font-bold">Trending Movies</h1>
+    <main className="mx-auto max-w-7xl px-6 py-10">
+      <section>
+        {popularError && <p>Unable to load popular movies.</p>}
 
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-        {movies?.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
-    </div>
+        {popularLoading ? (
+          <p>Loading popular movies...</p>
+        ) : (
+          <MovieSection
+            title="🔥 Popular Movies"
+            movies={popularData?.results ?? []}
+          />
+        )}
+      </section>
+
+      <section className="mt-14">
+        {nowPlayingError && <p>Unable to load now playing movies.</p>}
+
+        {nowPlayingLoading ? (
+          <p>Loading now playing movies...</p>
+        ) : (
+          <MovieSection
+            title="🎬 Now Playing"
+            movies={nowPlayingData?.results ?? []}
+          />
+        )}
+      </section>
+
+      <section className="mt-14">
+        {topRatedError && <p>Unable to load top rated movies.</p>}
+
+        {topRatedLoading ? (
+          <p>Loading top rated movies...</p>
+        ) : (
+          <MovieSection
+            title="⭐ Top Rated"
+            movies={topRatedData?.results ?? []}
+          />
+        )}
+      </section>
+    </main>
   );
 };
 

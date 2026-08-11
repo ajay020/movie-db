@@ -71,3 +71,21 @@ export const getMoviesByGenre = async (
 
   return response.data;
 };
+
+export const getPopularMovies = async (): Promise<MovieResponse> => {
+  const response = await api.get<MovieResponse>("/movie/popular");
+
+  return response.data;
+};
+
+export const getNowPlayingMovies = async (): Promise<MovieResponse> => {
+  const response = await api.get<MovieResponse>("/movie/now_playing");
+
+  return response.data;
+};
+
+export const getTopRatedMovies = async (): Promise<MovieResponse> => {
+  const response = await api.get<MovieResponse>("/movie/top_rated");
+
+  return response.data;
+};
