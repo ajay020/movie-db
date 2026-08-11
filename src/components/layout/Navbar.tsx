@@ -57,6 +57,15 @@ const Navbar = () => {
           </NavLink>
 
           <NavLink
+            to="/genres"
+            className={({ isActive }) =>
+              isActive ? "text-red-500" : "text-slate-300 hover:text-white"
+            }
+          >
+            Browse
+          </NavLink>
+
+          <NavLink
             to="/search"
             className={({ isActive }) =>
               `text-sm font-medium transition ${
@@ -140,6 +149,15 @@ const Navbar = () => {
             >
               <Search size={18} />
               Search
+            </NavLink>
+
+            <NavLink
+              to="/genres"
+              className={({ isActive }) =>
+                isActive ? "text-red-500" : "text-slate-300 hover:text-white"
+              }
+            >
+              Genres
             </NavLink>
 
             <NavLink
